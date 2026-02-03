@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Portfolio - Master's Scholarship Application</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a365d;
+            --secondary: #2c5282;
+            --accent: #d97706;
+            --text: #1a202c;
+            --text-light: #4a5568;
+            --bg: #fafafa;
+            --bg-card: #ffffff;
+            --border: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.7;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Global vertical timeline */
+        body::before {
+            content: '';
+            position: fixed;
+            left: 2rem;
+            top: 100px;
+            width: 3px;
+            height: calc(100vh - 200px);
+            background: rgba(217, 119, 6, 0.15);
+            border-radius: 2px;
+            z-index: 10;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            left: 2rem;
+            top: 100px;
+            width: 3px;
+            height: 0%;
+            background: linear-gradient(180deg, var(--accent) 0%, #a855f7 50%, #3b82f6 100%);
+            border-radius: 2px;
+            z-index: 10;
+            transition: height 0.1s linear;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            padding: 6rem 2rem 4rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ef 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(217, 119, 6, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+
+        .hero .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content .label {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: var(--accent);
+            color: white;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            border-radius: 2px;
+        }
+
+        .hero h1 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .hero .stats {
+            display: flex;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .stat {
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .stat-number {
+            font-family: 'Crimson Pro', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-image {
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .profile-card {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border);
+        }
+
+        .profile-img {
+            width: 100%;
+            aspect-ratio: 4/5;
+            background: linear-gradient(135deg, #cbd5e0 0%, #e2e8f0 100%);
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--secondary);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+
+        .contact-item svg {
+            width: 18px;
+            height: 18px;
+            color: var(--accent);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem 5rem 5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        section h2 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+        }
+
+        /* Section indicator dots on timeline */
+        section::before {
+            content: '';
+            position: fixed;
+            left: 1.625rem;
+            width: 16px;
+            height: 16px;
+            background: var(--bg);
+            border: 3px solid rgba(217, 119, 6, 0.3);
+            border-radius: 50%;
+            z-index: 11;
+            transition: all 0.3s ease-out;
+            opacity: 0;
+        }
+
+        section.in-view::before {
+            opacity: 1;
+            width: 20px;
+            height: 20px;
+            left: 1.5rem;
+            background: linear-gradient(135deg, var(--accent), #a855f7);
+            border: 3px solid var(--bg);
+            box-shadow: 0 0 0 8px rgba(217, 119, 6, 0.2), 0 0 20px rgba(217, 119, 6, 0.4);
+            animation: sectionPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes sectionPulse {
+            0%, 100% {
+                box-shadow: 0 0 0 8px rgba(217, 119, 6, 0.2), 0 0 20px rgba(217, 119, 6, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 0 12px rgba(217, 119, 6, 0.15), 0 0 30px rgba(217, 119, 6, 0.5);
+            }
+        }
+
+        /* Education */
+        .education-grid {
+            position: relative;
+            padding-left: 0;
+        }
+
+        .education-item {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 2px solid var(--border);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease-out;
+            position: relative;
+            margin-bottom: 3rem;
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .education-item.active {
+            border: 2px solid transparent;
+            background-image: linear-gradient(var(--bg-card), var(--bg-card)), 
+                              linear-gradient(135deg, var(--accent), #a855f7, #3b82f6);
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+            box-shadow: 0 8px 30px rgba(217, 119, 6, 0.2);
+        }
+
+        .education-item:hover {
+            transform: translateX(-10px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .education-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        .education-item h3 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .education-item .university {
+            color: var(--text-light);
+            font-weight: 500;
+            margin-bottom: 0.3rem;
+        }
+
+        .education-item .date {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .gpa {
+            background: #f7fafc;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* Research */
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            position: relative;
+        }
+
+        .research-card {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 2px solid var(--border);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease-out;
+            opacity: 1;
+        }
+
+        .research-card.in-view {
+            border: 2px solid transparent;
+            background-image: linear-gradient(var(--bg-card), var(--bg-card)), 
+                              linear-gradient(135deg, #3b82f6, #a855f7, var(--accent));
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+            box-shadow: 0 8px 30px rgba(59, 130, 246, 0.2);
+        }
+
+        .research-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .research-card h3 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .research-card .role {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: #fef3c7;
+            color: #92400e;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 3px;
+            margin-bottom: 1rem;
+        }
+
+        .research-card p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .research-card .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            padding: 0.3rem 0.8rem;
+            background: #e0e7ef;
+            color: var(--secondary);
+            font-size: 0.8rem;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+
+        /* Skills */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            animation: fadeInUp 0.6s ease-out both;
+        }
+
+        .skill-category:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .skill-category:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        .skill-category:nth-child(4) {
+            animation-delay: 0.3s;
+        }
+
+        .skill-category h3 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .skill-category h3 svg {
+            width: 24px;
+            height: 24px;
+            color: var(--accent);
+        }
+
+        .skill-category ul {
+            list-style: none;
+        }
+
+        .skill-category li {
+            padding: 0.6rem 0;
+            color: var(--text-light);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .skill-category li:last-child {
+            border-bottom: none;
+        }
+
+        /* Achievements */
+        .achievements-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .achievement-item {
+            background: var(--bg-card);
+            padding: 1.5rem 2rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--secondary);
+            display: flex;
+            align-items: start;
+            gap: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            animation: fadeInUp 0.6s ease-out both;
+        }
+
+        .achievement-item:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .achievement-item:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        .achievement-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--accent) 0%, #f59e0b 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .achievement-icon svg {
+            width: 24px;
+            height: 24px;
+            color: white;
+        }
+
+        .achievement-content h3 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .achievement-content p {
+            color: var(--text-light);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 3rem 2rem 2rem;
+            margin-top: 4rem;
+        }
+
+        footer .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        footer h3 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        footer p {
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(217, 119, 6, 0.3);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+        }
+
+        .social-links svg {
+            width: 20px;
+            height: 20px;
+            color: white;
+        }
+
+        .copyright {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body::before,
+            body::after {
+                left: 1rem;
+            }
+
+            section {
+                padding: 5rem 2rem;
+            }
+
+            section::before {
+                left: 0.625rem;
+            }
+
+            section.in-view::before {
+                left: 0.5rem;
+            }
+
+            .hero .container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .stats {
+                gap: 2rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            section h2 {
+                font-size: 2rem;
+            }
+
+            .research-grid,
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">Portfolio</div>
+            <ul>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#research">Research</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#achievements">Achievements</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <span class="label">Master's Scholarship Candidate</span>
+                <h1>Your Name Here</h1>
+                <p class="subtitle">Passionate researcher and scholar pursuing advanced studies in [Your Field]. Committed to excellence in academic research and innovation.</p>
+                
+                <div class="stats">
+                    <div class="stat">
+                        <span class="stat-number">3.9</span>
+                        <span class="stat-label">GPA</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">5+</span>
+                        <span class="stat-label">Publications</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">10+</span>
+                        <span class="stat-label">Awards</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-image">
+                <div class="profile-card">
+                    <div class="profile-img">📸</div>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                            your.email@university.edu
+                        </div>
+                        <div class="contact-item">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                            +1 (555) 123-4567
+                        </div>
+                        <div class="contact-item">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            City, Country
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education">
+        <h2>Education</h2>
+        <div class="education-grid">
+            <div class="education-item">
+                <div class="education-header">
+                    <div>
+                        <h3>Bachelor of Science in [Your Major]</h3>
+                        <p class="university">University Name</p>
+                        <p class="date">September 2020 - June 2024</p>
+                    </div>
+                    <div class="gpa">GPA: 3.9/4.0</div>
+                </div>
+                <p>Relevant coursework: Advanced Mathematics, Research Methodology, Data Analysis, Statistical Modeling, Machine Learning, Advanced Programming</p>
+            </div>
+
+            <div class="education-item">
+                <div class="education-header">
+                    <div>
+                        <h3>High School Diploma</h3>
+                        <p class="university">High School Name</p>
+                        <p class="date">2016 - 2020</p>
+                    </div>
+                    <div class="gpa">Valedictorian</div>
+                </div>
+                <p>Graduated with honors. President of Science Club. Winner of National Academic Competition.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Experience -->
+    <section id="research">
+        <h2>Research Experience</h2>
+        <div class="research-grid">
+            <div class="research-card">
+                <span class="role">Lead Researcher</span>
+                <h3>Project Title: Advanced Research in [Field]</h3>
+                <p>Conducted comprehensive research on [topic], resulting in significant findings that were published in peer-reviewed journals. Collaborated with international research teams.</p>
+                <div class="tags">
+                    <span class="tag">Data Analysis</span>
+                    <span class="tag">Machine Learning</span>
+                    <span class="tag">Publication</span>
+                </div>
+            </div>
+
+            <div class="research-card">
+                <span class="role">Research Assistant</span>
+                <h3>Laboratory Research Project</h3>
+                <p>Assisted in groundbreaking research under Dr. [Name] focused on [specific topic]. Developed novel methodologies and contributed to three research papers.</p>
+                <div class="tags">
+                    <span class="tag">Laboratory Work</span>
+                    <span class="tag">Methodology</span>
+                    <span class="tag">Collaboration</span>
+                </div>
+            </div>
+
+            <div class="research-card">
+                <span class="role">Independent Study</span>
+                <h3>Honors Thesis Research</h3>
+                <p>Completed honors thesis on [topic] with distinction. Presented findings at three national conferences and received recognition for innovation.</p>
+                <div class="tags">
+                    <span class="tag">Thesis</span>
+                    <span class="tag">Conference</span>
+                    <span class="tag">Innovation</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+        <h2>Skills & Expertise</h2>
+        <div class="skills-container">
+            <div class="skill-category">
+                <h3>
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path></svg>
+                    Technical Skills
+                </h3>
+                <ul>
+                    <li>Programming: Python, R, MATLAB, Java</li>
+                    <li>Data Analysis: SPSS, Stata, Excel</li>
+                    <li>Machine Learning & AI</li>
+                    <li>Statistical Modeling</li>
+                    <li>Database Management: SQL</li>
+                </ul>
+            </div>
+
+            <div class="skill-category">
+                <h3>
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    Research Skills
+                </h3>
+                <ul>
+                    <li>Academic Writing & Publishing</li>
+                    <li>Literature Review & Analysis</li>
+                    <li>Experimental Design</li>
+                    <li>Qualitative & Quantitative Methods</li>
+                    <li>Grant Writing</li>
+                </ul>
+            </div>
+
+            <div class="skill-category">
+                <h3>
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
+                    Languages
+                </h3>
+                <ul>
+                    <li>English (Fluent)</li>
+                    <li>Spanish (Advanced)</li>
+                    <li>French (Intermediate)</li>
+                    <li>Mandarin (Basic)</li>
+                </ul>
+            </div>
+
+            <div class="skill-category">
+                <h3>
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    Leadership
+                </h3>
+                <ul>
+                    <li>Team Management</li>
+                    <li>Project Coordination</li>
+                    <li>Public Speaking</li>
+                    <li>Mentoring & Teaching</li>
+                    <li>Cross-cultural Communication</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements -->
+    <section id="achievements">
+        <h2>Achievements & Awards</h2>
+        <div class="achievements-grid">
+            <div class="achievement-item">
+                <div class="achievement-icon">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+                </div>
+                <div class="achievement-content">
+                    <h3>Dean's List Scholar (4 Years)</h3>
+                    <p>Consistently maintained top academic performance, earning Dean's List recognition every semester throughout undergraduate studies.</p>
+                </div>
+            </div>
+
+            <div class="achievement-item">
+                <div class="achievement-icon">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>
+                </div>
+                <div class="achievement-content">
+                    <h3>Outstanding Research Award</h3>
+                    <p>Received university-wide recognition for excellence in undergraduate research. Project selected from over 200 submissions for innovation and impact.</p>
+                </div>
+            </div>
+
+            <div class="achievement-item">
+                <div class="achievement-icon">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path></svg>
+                </div>
+                <div class="achievement-content">
+                    <h3>National Conference Presenter</h3>
+                    <p>Presented research findings at prestigious national conferences including the Annual Academic Summit and International Research Symposium.</p>
+                </div>
+            </div>
+
+            <div class="achievement-item">
+                <div class="achievement-icon">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                </div>
+                <div class="achievement-content">
+                    <h3>Community Service Leader</h3>
+                    <p>Founded and led volunteer initiative serving 500+ community members. Organized educational programs and mentored underprivileged students.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Contact -->
+    <footer id="contact">
+        <div class="container">
+            <h3>Let's Connect</h3>
+            <p>I'm excited to discuss opportunities for collaboration and master's program opportunities.</p>
+            <a href="mailto:your.email@university.edu" class="cta-button">Get In Touch</a>
+            
+            <div class="social-links">
+                <a href="#" aria-label="LinkedIn">
+                    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                </a>
+                <a href="#" aria-label="GitHub">
+                    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                </a>
+                <a href="#" aria-label="Google Scholar">
+                    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 24a7 7 0 110-14 7 7 0 010 14zm0-24L0 9.5l4.838 3.94A8 8 0 0112 9a8 8 0 017.162 4.44L24 9.5z"/></svg>
+                </a>
+                <a href="#" aria-label="Twitter">
+                    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                </a>
+            </div>
+
+            <div class="copyright">
+                © 2026 Your Name. All rights reserved. | Built with dedication to academic excellence.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Get elements
+        const sections = document.querySelectorAll('section');
+        const educationItems = document.querySelectorAll('.education-item');
+        const researchCards = document.querySelectorAll('.research-card');
+        const skillCategories = document.querySelectorAll('.skill-category');
+        const achievements = document.querySelectorAll('.achievement-item');
+        const nav = document.querySelector('nav');
+
+        // Create dynamic global timeline style
+        const globalTimelineStyle = document.createElement('style');
+        globalTimelineStyle.textContent = `
+            body::after {
+                height: var(--global-timeline-height, 0%) !important;
+            }
+        `;
+        document.head.appendChild(globalTimelineStyle);
+
+        // Update global timeline based on scroll progress through entire page
+        function updateGlobalTimeline() {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            
+            document.body.style.setProperty('--global-timeline-height', `${scrollPercent}%`);
+        }
+
+        // Update section indicators - show dot for current section
+        function updateSectionIndicators() {
+            sections.forEach((section) => {
+                const rect = section.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                
+                // Section is in view when it's in the middle portion of viewport
+                if (rect.top < windowHeight * 0.5 && rect.bottom > windowHeight * 0.3) {
+                    section.classList.add('in-view');
+                    // Position the dot at the section title
+                    const sectionTop = rect.top + window.pageYOffset;
+                    const viewportOffset = rect.top;
+                    section.style.setProperty('--dot-position', `${viewportOffset + 50}px`);
+                } else {
+                    section.classList.remove('in-view');
+                }
+            });
+            
+            // Position dots based on section h2
+            document.querySelectorAll('section.in-view').forEach(section => {
+                const h2 = section.querySelector('h2');
+                if (h2) {
+                    const h2Rect = h2.getBoundingClientRect();
+                    section.style.setProperty('--dot-top', `${h2Rect.top + h2Rect.height / 2}px`);
+                    
+                    // Apply the position
+                    const beforeStyle = window.getComputedStyle(section, '::before');
+                    section.style.setProperty('--section-dot-top', `${h2Rect.top + h2Rect.height / 2}px`);
+                }
+            });
+        }
+
+        // Add dynamic positioning for section dots
+        const sectionDotStyle = document.createElement('style');
+        sectionDotStyle.textContent = `
+            section.in-view::before {
+                top: var(--section-dot-top, 50%) !important;
+            }
+        `;
+        document.head.appendChild(sectionDotStyle);
+
+        // Function to check which education item is currently active
+        function updateEducationItems() {
+            educationItems.forEach((item) => {
+                const rect = item.getBoundingClientRect();
+                const itemMiddle = rect.top + rect.height / 2;
+                const windowHeight = window.innerHeight;
+                
+                // Item is active when it's in the middle portion of the viewport
+                if (itemMiddle > windowHeight * 0.3 && itemMiddle < windowHeight * 0.7) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        }
+
+        // Function to update research cards
+        function updateResearchCards() {
+            researchCards.forEach((card) => {
+                const rect = card.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                
+                // Card is in view when it's mostly visible
+                if (rect.top < windowHeight * 0.8 && rect.bottom > windowHeight * 0.2) {
+                    card.classList.add('in-view');
+                }
+            });
+        }
+
+        // Function to update skills
+        function updateSkills() {
+            skillCategories.forEach((skill, index) => {
+                const rect = skill.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                
+                if (rect.top < windowHeight * 0.85) {
+                    skill.style.opacity = '1';
+                    skill.style.transform = 'translateY(0)';
+                    skill.style.transition = `all 0.6s ease-out ${index * 0.1}s`;
+                }
+            });
+        }
+
+        // Function to update achievements
+        function updateAchievements() {
+            achievements.forEach((achievement, index) => {
+                const rect = achievement.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                
+                if (rect.top < windowHeight * 0.85) {
+                    achievement.style.opacity = '1';
+                    achievement.style.transform = 'translateX(0)';
+                    achievement.style.transition = `all 0.6s ease-out ${index * 0.1}s`;
+                }
+            });
+        }
+
+        // Initialize styles for skills and achievements
+        skillCategories.forEach(skill => {
+            skill.style.opacity = '0';
+            skill.style.transform = 'translateY(20px)';
+        });
+
+        achievements.forEach(achievement => {
+            achievement.style.opacity = '0';
+            achievement.style.transform = 'translateX(-30px)';
+        });
+
+        // Main scroll handler
+        let ticking = false;
+        function handleScroll() {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    updateGlobalTimeline();
+                    updateSectionIndicators();
+                    updateEducationItems();
+                    updateResearchCards();
+                    updateSkills();
+                    updateAchievements();
+                    
+                    // Nav shadow
+                    if (window.scrollY > 50) {
+                        nav.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+                    } else {
+                        nav.style.boxShadow = 'none';
+                    }
+                    
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }
+
+        // Add scroll listener
+        window.addEventListener('scroll', handleScroll);
+
+        // Initial call
+        handleScroll();
+
+        // Parallax effect on hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (scrolled < window.innerHeight && hero) {
+                hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+                hero.style.opacity = Math.max(0.5, 1 - (scrolled / window.innerHeight) * 0.5);
+            }
+        });
+    </script>
+</body>
+</html>
