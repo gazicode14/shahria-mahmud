@@ -437,22 +437,6 @@
             overflow: hidden;
         }
 
-        .research-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent), #a855f7, #3b82f6);
-            transform: scaleX(0);
-            transition: transform 0.5s ease;
-        }
-
-        .research-card.in-view::before {
-            transform: scaleX(1);
-        }
-
         .research-card:nth-child(even) {
             background: linear-gradient(145deg, rgba(248, 250, 252, 0.98) 0%, rgba(241, 245, 249, 0.95) 100%);
             transform: translateX(2rem);
@@ -470,10 +454,11 @@
         .research-card:hover {
             transform: translateX(-10px);
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .research-card:hover::before {
-            transform: scaleX(1.1);
+            border: 2px solid transparent;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
+                              linear-gradient(135deg, var(--accent), #a855f7, #3b82f6);
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
         }
 
         .research-card h3 {
